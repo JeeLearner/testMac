@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.lyd</groupId>
+  <artifactId>lyd-spring</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<!-- 必须包 -->
+  	<module>show-rbac</module>
+  	<module>show-jdbc</module>
+  	<module>show-base</module>
+  	<module>show-web</module>
+  	<!-- 可选包 -->
+  	<module>show-kaptcha</module>
+  	<module>show-email</module>
+  	<module>show-sys</module>
+  	<module>show-tool</module>
+  	<module>show-monitor</module>
+  	<module>show-schedule</module>
+  	<module>show-configmanage</module>
+  	<module>show-social</module>
+  </modules>
+  
+  <build>
+		<defaultGoal>compile</defaultGoal>
+	</build>
+</project>

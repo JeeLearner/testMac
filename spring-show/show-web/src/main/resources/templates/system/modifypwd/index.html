@@ -1,0 +1,93 @@
+<script type="text/javascript">
+    function modifypwd() {
+    	if ($("#password0").val().length < 1){
+    		alert("请填写原密码");
+    		return flase;
+    	}
+    	if ($("#password").val().length < 1) {
+            alert("请填写新密码");
+            return false;
+        } else if ($("#password").val().length < 8 && $("#password").val().length > 0) {
+            alert("密码太短");
+            return false;
+        }
+        if ($("#password").val().length < 8) {
+            alert("密码太短");
+            return false;
+        }
+        if ($("#password").val() != $("#chpassword").val()) {
+            alert("两次密码不一样");
+            return false;
+        }
+        $("#modifypwd").ajaxSubmit({
+            type : 'post', // 提交方式 get/post
+            url : '/sys/modifypwd_do/modifypwd.do', // 需要提交的 url
+            data : {},
+            dataType : "json",
+            success : function(data) { // data 保存提交后返回的数据，一般为 json 数据
+                alert(data.msg);
+            }
+        });
+        $("#modifypwd").resetForm(); // 提交后重置表单
+        return false;
+    }
+    function checkpassword() {
+        if ($("#chpassword").val() != $("#password").val()) {
+            $("#checkpwd2").removeClass();
+            $("#checkpwd2").css('color', 'red');
+            $("#checkpwd2").html("两次密码不一致");
+            $("#checkpwd2").addClass('fa fa-times');
+        } else {
+            $("#checkpwd2").removeClass();
+            $("#checkpwd2").css('color', 'green');
+            $("#checkpwd2").html("");
+            $("#checkpwd2").addClass('fa fa-check');
+        }
+    }
+</script>
+
+<div id="flotTip" style="display: none; position: absolute;"></div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-sm-6 b-r">
+			<h3 class="m-t-none m-b">修改密码</h3>
+			<p>
+				您知道吗 ？捐助我可以申请修改更短的账号名称。 <a href="#" class="bg-warning"> 开通VIP <i
+					class="fa fa-arrow-circle-right icon"></i>
+				</a>
+			</p>
+			<form id="modifypwd" onsubmit="return false;">
+				<div class="form-group">
+					<label>原密码</label> 
+					<input id="password0" name="password0" type="password" class="form-control" placeholder="Old Password">
+				</div>
+				<div class="form-group">
+					<label>新密码</label> <input id="password" name="password" onblur="checkpassword()"
+						type="password" class="form-control" placeholder="New Password">
+						<i id="checkpwd1"></i>
+				</div>
+				<div class="form-group">
+					<label>确认密码</label> <input id="chpassword" name="chpassword" onblur="checkpassword()"
+						type="password" class="form-control"
+						placeholder="Confirm Password">
+						<i id="checkpwd2"></i>
+				</div>
+				<div class="checkbox m-t-lg" align="center">
+					<button type="submit" onclick="modifypwd()" 
+						class="btn btn-primary text-uc m-t-n-xs">
+						<strong>确定</strong>
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-6">
+			<br><br><br><br>
+			<h4>什么样的密码安全?</h4>
+			<p>1.密码长于8位</p>
+			<p>2.密码包含大小写和数字 最好有特殊符号</p>
+			<p>3.密码不要和任何平台的相同，部分网站是明文存储，有泄露风险。我平台绝对是无明文，且密码二次加密。放心使用</p>
+			<p>4.不要把密码随意告诉任何人。必须确认有相关安全常识。</p>
+			<p>5.未来添加第三方平台绑定，尽量少使用密码登陆。</p>
+		</div>
+	</div>
+</div>

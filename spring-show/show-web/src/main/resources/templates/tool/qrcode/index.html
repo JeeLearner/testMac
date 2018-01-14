@@ -1,0 +1,37 @@
+
+<textarea id="link" rows="5" cols="30">
+http://blog.csdn.net/it_lyd
+</textarea>
+<br>
+<span style="color:red" id="tips"></span>
+<br><br>
+<button onclick="genqrcode()">生成二维码</button>
+<br><br>
+<img src="" id="qrcodegen">
+
+<script type="text/javascript">
+   var filter =/^(http(s)?:\/\/)[\w_\/\\]+/;
+	$("#link").on("blur",function(){
+		 var link = $("#link").val();
+	     	if(!filter.test(link)){
+	        	$("#tips").text("请输入正确的url格式");
+	        	$("#qrcodegen").attr("src","")
+	        	return false;
+	        }else{
+	        	$("#tips").text("")
+	        }
+	})
+    function genqrcode() {
+        var link = $("#link").val();
+     	if(!filter.test(link)){
+        	$("#tips").text("请输入正确的url格式")
+        	return false;
+        }else{
+        	$("#tips").text("");
+        	var link2=encodeURIComponent(link)
+            $("#qrcodegen").attr("src", "/tool/qrcode_do/gen.do?url=" + link2 + "&width=200&height=200")
+        	
+        }
+       
+    }
+</script>

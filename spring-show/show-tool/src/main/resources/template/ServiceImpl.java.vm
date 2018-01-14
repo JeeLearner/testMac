@@ -1,0 +1,50 @@
+package ${package}.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import ${package}.dao.${className}Dao;
+import ${package}.domain.${className}DO;
+import ${package}.domain.${className}VO;
+import ${package}.qvo.${className}Query;
+import java.util.List;
+import java.util.Map;
+import com.lyd.utils.BaseMap;
+import com.lyd.utils.Page;
+
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+	
+	@Autowired
+	private ${className}Dao ${classname}Dao;
+	
+	@Override
+	public ${className}VO save(${className}VO bean) throws Exception{
+	return ${classname}Dao.save(bean);
+	
+	}
+	
+	@Override
+	public	void update(BaseMap<String, Object> updatemap, BaseMap<String, Object> wheremap){
+		${classname}Dao.update(updatemap,wheremap);
+	}
+	
+	@Override
+	public	Page list(Page page,${className}Query qvo)throws Exception{
+		return ${classname}Dao.list(page,qvo);
+	}
+	
+	@Override
+	public	List<${className}VO> list(${className}Query qvo) throws Exception{
+		return ${classname}Dao.list(qvo);
+	}
+
+	public void remove(BaseMap<String, Object> wheremap){
+		${classname}Dao.remove(wheremap);
+	}
+	
+	public ${className}VO get(${pk.attrType} id){
+		return 	${classname}Dao.get(id);
+	}
+}
